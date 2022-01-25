@@ -7,7 +7,7 @@ using MovieStoreWebApi.Entities;
 namespace MovieStoreWebApi.Application.UserOperations.Command.CreateUser
 {
     public class CreateUserCommand
-    {
+    {     
         public CreateUserModel model;
         readonly IMovieStoreDbContext _context;
         readonly IMapper _mapper;

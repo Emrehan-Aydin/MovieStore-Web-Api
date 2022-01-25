@@ -5,6 +5,7 @@ using MovieStoreWebApi.DbOperations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MovieStoreWebApi.TokenOperations.Models;
+using MovieStoreWebApi.Application.UserOperations.Command.RefreshToken;
 
 namespace Controllers
 {
@@ -38,6 +39,15 @@ namespace Controllers
             command.model = Login;
             var token = command.Handle();
             return token;
+        }
+
+        [HttpPost("refresh/token")]
+        public ActionResult<Token> RefreshToken([FromQuery] string token)
+        {
+            RefreshTokenCommand command = new RefreshTokenCommand(_context,_configuration);
+            command.RefreshToken = token;
+            var resultToken = command.Handle();
+            return resultToken;
         }
     }
 }
